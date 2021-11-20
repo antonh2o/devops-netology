@@ -79,10 +79,12 @@
 
 7. Кто автор функции synchronizedWriters?
 	Ответ:
+	
+	Ответ: соответственно автор коммита 5ac311e2a - Martin Atkins mart@degeneration.co.uk Wed May 3 16:25:41 2017 -0700
 	>git log -S "func synchronizedWriters" --pretty=format:"%h - %an %ae %ad"
 
 		bdfea50cc - James Bardin j.bardin@gmail.com Mon Nov 30 18:02:04 2020 -0500
 		5ac311e2a - Martin Atkins mart@degeneration.co.uk Wed May 3 16:25:41 2017 -0700
 
 	где %an = author name, %ae author email, %ad = author date (format respects --date= option)
-	Ответ: соответственно автор коммита 5ac311e2a - Martin Atkins mart@degeneration.co.uk Wed May 3 16:25:41 2017 -0700
+	
