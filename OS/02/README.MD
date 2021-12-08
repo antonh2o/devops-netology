@@ -94,6 +94,13 @@
 		-- A stop job for unit node_exporter.service has finished.
 		--
 		-- The job identifier is 1100 and the job result is done.
+		
+		# проверка передачи параметров:
+		
+		параметры можно передавать через содержимое файла EnvironmentFile=/etc/default/node_exporter
+		например указал в файле ARGS="--web.listen-address=':9110'"
+		netstat -lntp grep 9110
+		tcp6       0      0 :::9110                 :::*                    LISTEN      3811/node_exporter
 
 
 2. Ознакомьтесь с опциями node_exporter и выводом /metrics по-умолчанию. Приведите несколько опций, 
