@@ -29,7 +29,8 @@ HOST: stackoverflow.com
 приложите скриншот консоли браузера в ответ.
 
 	Ответ:
-	![stackowerflow.com](https://github.com/antonh2o/devops-netology/edit/main/NET/01/stackoverflow.png)
+	
+![stackowerflow.com](https://github.com/antonh2o/devops-netology/blob/main/NET/01/stackoverflow.png)
 
 3. Какой IP адрес у вас в интернете?
 
