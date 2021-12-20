@@ -7,7 +7,7 @@
 	```
 	Ответ:
 	
-	![Bitwarden](https://github.com/antonh2o/devops-netology/blob/main/SEC/bitwarden.png)
+![Bitwarden](https://github.com/antonh2o/devops-netology/blob/main/SEC/bitwarden.png)
 
 	```
 
@@ -15,7 +15,7 @@
 
 	```
 	Ответ:
-	![Bitwarden2fa](https://github.com/antonh2o/devops-netology/blob/main/SEC/bitwarden2fa.png)
+![Bitwarden2fa](https://github.com/antonh2o/devops-netology/blob/main/SEC/bitwarden2fa.png)
 
 	```
 
@@ -41,7 +41,7 @@
 
 	```
 	Ответ: просканировал сайт https://testssl.sh/
-	![testssl.txt](https://github.com/antonh2o/devops-netology/blob/main/SEC/testssl.txt)
+![testssl.txt](https://github.com/antonh2o/devops-netology/blob/main/SEC/testssl.txt)
 
 	```
 
@@ -50,34 +50,34 @@
 	```
 	Ответ:
 	> ssh-keygen
-	Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa):
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /root/.ssh/id_rsa
-Your public key has been saved in /root/.ssh/id_rsa.pub
-The key fingerprint is:
-SHA256:c4+4InUlepF0dW//goCC4Rs2rnmOP7p4bkfLpa3RFWs root@vagrant
-The key's randomart image is:
-+---[RSA 3072]----+
-|           .. .  |
-|        . .  . . |
-|    .  ..o      o|
-|   . o  ++.    ..|
-|    * ..E+o     .|
-|   o.=++o+ + .  .|
-|   o+*.o. . o . .|
-| .o+O.o  .     . |
-|.+BB++ ..        |
-+----[SHA256]-----+
-root@vagrant:~#
-fish: Waiting for initial line...
+			Generating public/private rsa key pair.
+		Enter file in which to save the key (/root/.ssh/id_rsa):
+		Enter passphrase (empty for no passphrase):
+		Enter same passphrase again:
+		Your identification has been saved in /root/.ssh/id_rsa
+		Your public key has been saved in /root/.ssh/id_rsa.pub
+		The key fingerprint is:
+		SHA256:c4+4InUlepF0dW//goCC4Rs2rnmOP7p4bkfLpa3RFWs root@vagrant
+		The key's randomart image is:
+		+---[RSA 3072]----+
+		|           .. .  |
+		|        . .  . . |
+		|    .  ..o      o|
+		|   . o  ++.    ..|
+		|    * ..E+o     .|
+		|   o.=++o+ + .  .|
+		|   o+*.o. . o . .|
+		| .o+O.o  .     . |
+		|.+BB++ ..        |
+		+----[SHA256]-----+
+		root@vagrant:~#
+		fish: Waiting for initial line...
 
-fish: Waiting for initial line...
+		fish: Waiting for initial line...
 
 	скопировал публичный ключ на сервер в 
-	cat id_rsa.pub >> /root/.ssh/authorized_keys
-	после этого успешно подключился к ссш серверу
+		cat id_rsa.pub >> /root/.ssh/authorized_keys
+		после этого успешно подключился к ссш серверу
 
 	```
 
@@ -93,15 +93,11 @@ fish: Waiting for initial line...
     Port 22
 	 успешно
 	 > ssh dev
-Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-81-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-Last login: Mon Dec 20 23:06:39 2021 from 217.114.224.18
-root@vm-acd4db49:~# exit
-logout
-Connection to iotw.ru closed.
+		Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-81-generic x86_64)
+		Last login: Mon Dec 20 23:06:39 2021 from 217.114.224.18
+		root@vm-acd4db49:~# exit
+		logout
+		Connection to iotw.ru closed.
 
 	```
 
@@ -110,6 +106,6 @@ Connection to iotw.ru closed.
 	```
 	Ответ:
 	> tcpdump -c 100 -w mypcap.pcap
-	![wireshark-pcap.png](https://github.com/antonh2o/devops-netology/blob/main/SEC/wireshark-pcap.png)
+![wireshark-pcap.png](https://github.com/antonh2o/devops-netology/blob/main/SEC/wireshark-pcap.png)
 
 	```
