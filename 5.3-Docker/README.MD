@@ -90,13 +90,13 @@ Hey, Netology
 Ответ: на  хостовой машине создал файл   hostfile.txt
 
 папку /data подключал в папку /tmp,
-в контейнере centos создал файл from_centos.txt
-
-![5-3-3from_centos.png](https://github.com/antonh2o/devops-netology/blob/main/5.3-Docker/5-3-3from_centos.png)
-![5-3-3from_debian.png](https://github.com/antonh2o/devops-netology/blob/main/5.3-Docker/5-3-3from_debian.png)
-
-
 ```
+![5-3-3from_centos.png](https://github.com/antonh2o/devops-netology/blob/main/5.3-Docker/5-3-3from_centos.png)
+```
+в контейнере centos создал файл from_centos.txt
+```
+
+![5-3-3from_debian.png](https://github.com/antonh2o/devops-netology/blob/main/5.3-Docker/5-3-3from_debian.png)
 
 ## Задача 4
 Воспроизвести практическую часть лекции самостоятельно.
