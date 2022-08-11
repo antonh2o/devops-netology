@@ -31,8 +31,9 @@ Overlay network : Виртуальная внутренняя частная с�
 
 ```
 docker node ls
-![docker node ls](https://github.com/antonh2o/devops-netology/blob/main/5.5-Docker-swarm/5.5_node_ls.png)
 ```
+![docker node ls](https://github.com/antonh2o/devops-netology/blob/main/5.5-Docker-swarm/5.5_node_ls.png)
+
 
 ## Задача 3
 
@@ -42,8 +43,9 @@ docker node ls
 
 ```
 docker service ls
-![docker service ls](https://github.com/antonh2o/devops-netology/blob/main/5.5-Docker-swarm/5.5_service_ls.png)
 ```
+![docker service ls](https://github.com/antonh2o/devops-netology/blob/main/5.5-Docker-swarm/5.5_service_ls.png)
+
 
 
 
