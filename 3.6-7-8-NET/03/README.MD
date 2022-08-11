@@ -256,7 +256,7 @@ Paths: (23 available, best #9, table default)
 	Ответ:
 	из соображения конфиденциальности схему рабочей сети нельзя публиковать, поэтому воспользуюсь чужой схемой
 ```	
-![Схема сети](https://github.com/antonh2o/devops-netology/blob/main/NET/03/Layer3.png)
+![Схема сети](https://github.com/antonh2o/devops-netology/blob/main/3.6-7-8-NET/03/Layer3.png)
 	
 	
 	
