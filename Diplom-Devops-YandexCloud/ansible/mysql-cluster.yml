@@ -1,0 +1,9 @@
+---
+- name: Install and configuring cluster mysql
+  hosts: mysql
+  become: yes
+  become_user: root
+  remote_user: ubuntu
+  roles:
+   - mysql-cluster
+   - mysql_exporter

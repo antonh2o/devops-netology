@@ -1,0 +1,9 @@
+---
+- name: installing nginx in reverse proxy
+  hosts: nginx
+  become: yes
+  become_user: root
+  remote_user: ubuntu
+  roles:
+   - provision
+   - proxy_server

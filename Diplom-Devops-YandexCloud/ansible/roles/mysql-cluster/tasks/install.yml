@@ -1,0 +1,12 @@
+---
+- name: install mysql
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  loop:
+    - mysql-client
+    - python3-mysqldb
+    - libmysqlclient-dev
+    - mysql-server
+  become: true

@@ -1,0 +1,25 @@
+---
+      - name: Create directory for ssh-keys
+        file: state=directory mode=0700 dest=/root/.ssh/
+
+      - name: Adding rsa-key in /root/.ssh/authorized_keys
+        copy: src=~/.ssh/id_rsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
+        ignore_errors: yes
+
+      - name: Adding ssh config in /root/.ssh/config
+        copy: src=~/.ssh/config dest=/root/.ssh/config owner=root mode=0600
+        ignore_errors: yes
+
+      - name: Checking DNS
+        command: host -t A google.com
+
+      - name: Installing tools mc net-tools htop
+        apt: >
+          package={{ item }}
+          state=present
+          update_cache=yes
+        with_items:
+          - git
+          - mc
+          - net-tools
+          - htop

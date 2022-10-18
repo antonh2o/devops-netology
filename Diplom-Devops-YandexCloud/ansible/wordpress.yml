@@ -1,0 +1,10 @@
+---
+- name: Download and install wordpress
+  hosts: app
+  become: yes
+  become_user: root
+  remote_user: ubuntu
+  roles:
+   - wordpress
+
+

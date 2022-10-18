@@ -1,0 +1,18 @@
+#Gitlab vars
+gitlab_pre_install: ['curl', 'apt-transport-https', 'openssh-server', 'ca-certificates', 'tzdata', 'perl', 'postfix']
+gitlab_packet: "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/bionic/gitlab-ce_13.2.1-ce.0_amd64.deb/download.deb"
+gitlab_runner_package_name: "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh"
+gitlab_runner_repository_file: "/etc/apt/sources.list.d/runner_gitlab-runner.list"
+open_file: "gitlab-ce"
+common_project_dir: "/mnt/project"
+gitlab_domain: "{{ gitlab_domain }}"
+gitlab_url: "http://{{ gitlab_domain }}"
+gitlab_admin_email: "{{ email }}"
+gitlab_admin_name: "admin"
+gitlab_admin_username: "admin"
+gitlab_admin_password: "{{ token }}"
+gitlab_admin_token: "{{ token }}"
+gitlab_ci_token: "{{ token }}"
+token: "{{ token }}"
+initial_root_password: "{{ token }}"
+initial_shared_runners_registration_token: "{{ token }}"

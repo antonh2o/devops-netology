@@ -1,0 +1,79 @@
+---
+- name: installing tools
+  apt: >
+    package={{ item }}
+    state=present
+    update_cache=yes
+  with_items:
+    - mysql-client
+    - unzip
+    - mc
+    - net-tools
+    - htop
+
+- name: Create user for Exporter
+  become: true
+  user:
+    state: present
+    name: prometheus
+    create_home: false
+    system: true
+    shell: /bin/false
+    group: root
+
+- name: Download mysqld_exporter
+  unarchive:
+#    src: mysqld_exporter-0.14.0.linux-amd64.tar.gz
+    src: "https://github.com/prometheus/mysqld_exporter/releases/download/v0.14.0/mysqld_exporter-0.14.0.linux-amd64.tar.gz"
+    remote_src: true
+    owner: prometheus
+    group: root
+    mode: 0755
+    dest: /tmp
+    creates: /tmp/mysqld_exporter-0.14.0.linux-amd64/mysqld_exporter
+
+- name: Copy binary /usr/local/bin
+  become: true
+  copy:
+    src: /tmp/mysqld_exporter-0.14.0.linux-amd64/mysqld_exporter
+    remote_src: true
+    dest: /usr/local/bin
+    owner: prometheus
+    group: root
+    mode: 0755
+
+- name: Remove .mysqld_exporter.cnf
+  become: true
+  file:
+    path: /usr/local/etc/.mysqld_exporter.cnf
+    state: absent
+
+- name: Setting password for mysqld_exporter
+  become: true
+  blockinfile:
+    create: true
+    dest: /usr/local/etc/.mysqld_exporter.cnf
+    group: root
+    owner: prometheus
+    mode: 0400
+    block: |
+      [client]
+      user={{ mysql_user.name }}
+      password="{{ mysql_user.password }}"
+
+- name: templating /etc/systemd/system/mysqld_exporter.service
+  become: true
+  template:
+    src: "mysqld_exporter.service.j2"
+    dest: "/etc/systemd/system/mysqld_exporter.service"
+    backup: false
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Ensure mysqld_exporter is running
+  become: true
+  service:
+    name: mysqld_exporter.service
+    enabled: true
+    state: restarted

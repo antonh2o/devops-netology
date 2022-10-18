@@ -1,0 +1,23 @@
+---
+- name: wp-cli | install
+  copy:
+    src: wp-cli.phar
+    dest: "/usr/local/bin/"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: wp-cli rename to wp
+  shell:
+    "chmod +x /usr/local/bin/wp-cli.phar; mv /usr/local/bin/wp-cli.phar /usr/local/bin/wp"
+  become: true
+
+- name: wp core install
+  command: >
+    wp core install --allow-root --path=/var/www/www.{{ domain }}/wordpress --url="www.{{ domain }}" --title="Tikhonov Anton Netology Diplom" --admin_user="admin" --admin_password="{{ token }}" --admin_email="{{ email }}"
+  become: true
+
+- name: wp plugins | wp_statistics | activate
+  command: >
+    wp plugin install wp-statistics --no-color --activate --allow-root --force --path=/var/www/www.{{ domain }}/wordpress
+  become: true

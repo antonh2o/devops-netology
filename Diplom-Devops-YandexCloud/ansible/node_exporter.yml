@@ -1,0 +1,8 @@
+---
+- name: Install node_exporter
+  hosts: all
+  become: yes
+  become_user: root
+  remote_user: ubuntu
+  roles:
+    - node_exporter

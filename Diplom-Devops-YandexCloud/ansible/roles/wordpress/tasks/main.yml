@@ -1,0 +1,11 @@
+---
+- include_tasks: install.yml
+- include_tasks: configuration.yml
+- include_tasks: wordpress_install.yml
+- include_tasks: wordpress_plugin_install.yml
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+  become: true
+

@@ -1,0 +1,23 @@
+before_script:
+  - eval $(ssh-agent -s)
+  - echo "$ssh_key" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+stages:
+  - build_and_deploy
+
+deploy-job:
+  stage: build_and_deploy
+  script:
+    - echo "Deploy"
+    - ssh -o StrictHostKeyChecking=no ubuntu@192.168.102.20 "mkdir -p /tmp/wordpress"
+    - echo "Clone repo"
+    - ssh -o StrictHostKeyChecking=no ubuntu@192.168.102.20 "git clone http://gitlab.antonh2o.ru/root/wordpress.git /tmp/wordpress/"
+    - echo "Update on wordpress server"
+    - ssh -o StrictHostKeyChecking=no ubuntu@192.168.102.20 "sudo mv /var/www/www.antonh2o.ru/wordpress /tmp/wordpress.bak"
+    - ssh -o StrictHostKeyChecking=no ubuntu@192.168.102.20 "sudo mv /tmp/wordpress /var/www/www.antonh2o.ru/"
+    - ssh -o StrictHostKeyChecking=no ubuntu@192.168.102.20 "sudo rm -rf /var/www/www.antonh2o.ru/wordpress/.git"
+    - echo "Set files permissions"
+    - ssh -o StrictHostKeyChecking=no ubuntu@192.168.102.20 "sudo chown -R www-data:www-data /var/www/www.antonh2o.ru/wordpress/" 
+    - ssh -o StrictHostKeyChecking=no ubuntu@192.168.102.20 "sudo systemctl start nginx"

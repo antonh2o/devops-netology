@@ -1,0 +1,12 @@
+[mysqld]
+user		= mysql
+port		= 3306
+tmpdir		= /tmp
+server-id = 1
+bind-address = {{ mysql_bind_address }}
+myisam_recover_options=BACKUP
+binlog-do-db = wordpress
+max_binlog_size         = 100M
+[client]
+user="{{ mysql_user.name }}"
+password="{{ mysql_root_password }}"

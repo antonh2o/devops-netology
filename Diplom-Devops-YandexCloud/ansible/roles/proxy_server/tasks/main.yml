@@ -1,0 +1,109 @@
+---
+#- name: Reading config
+#  ansible.builtin.include_vars:
+#    file: config.yml
+#    name: config
+
+- name: Check DNS
+  ansible.builtin.uri:
+    url: http://myip.wtf/text
+    return_content: yes
+  register: this
+
+- name: Install NGINX from OS repo
+  become: true
+  ansible.builtin.apt:
+    name: nginx-full
+
+- name: Creating nginx.conf
+  become: true
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    backup: true
+    mode: 0644
+    owner: root
+
+- name: Disable all sites
+  become: true
+  block:
+    - name: deleting sites-enabled
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled
+        state: absent
+    - name: creating sites-enabled
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled
+        state: directory
+        mode: 0755
+        owner: root
+        group: root
+
+- name: Create server .conf files
+  become: true
+  ansible.builtin.template:
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/nginx/sites-available/{{ item }}.conf"
+    backup: true
+    mode: 0644
+    owner: root
+  loop:
+    - app
+    - gitlab
+    - prometheus
+    - alertmanager
+    - grafana
+
+- name: link server .conf files
+  become: true
+  ansible.builtin.file:
+    src: "/etc/nginx/sites-available/{{ item }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ item }}.conf"
+    owner: root
+    group: root
+    state: link
+  loop:
+    - app
+    - gitlab
+    - prometheus
+    - alertmanager
+    - grafana
+
+- name: Install snapd
+  become: true
+  ansible.builtin.apt:
+    name: snapd
+    state: latest
+- name: Install snap core
+  ansible.builtin.shell:
+    cmd: "sudo snap install core && sudo snap install hello-world && /snap/bin/hello-world"
+  register: r
+  changed_when: '''"hello-world" is already installed'' not in r.stderr'
+  failed_when: '"Hello World!" not in r.stdout'
+
+- name: Remove certbot-auto and any Certbot OS packages
+  ansible.builtin.apt:
+    name: certbot
+    state: absent
+
+- name: Install Certbot
+  ansible.builtin.command:
+    cmd: "sudo snap install --classic certbot"
+  register: r
+  changed_when: "'is already installed' not in r.stderr"
+- name: Prepare the Certbot command
+  become: true
+  ansible.builtin.file:
+    state: link
+    src: "/snap/bin/certbot"
+    path: "/usr/bin/certbot"
+- name: Install letsencrypt certificates
+  # Yes, we know about ansible.builtin.acme_certificate. We just aren't using it.
+  ansible.builtin.command:
+    cmd: "sudo certbot --nginx --noninteractive --test-cert --agree-tos --email {{ email }} -d {{ item }}"
+  loop:
+    - "www.{{ domain }}"
+    - "gitlab.{{ domain }}"
+    - "prometheus.{{ domain }}"
+    - "grafana.{{ domain }}"
+    - "alertmanager.{{ domain }}"

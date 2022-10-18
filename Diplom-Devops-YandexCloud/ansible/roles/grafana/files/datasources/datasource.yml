@@ -1,0 +1,23 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    url: http://localhost:9090
+    basicAuth: false
+    isDefault: true
+    editable: true
+
+  - name: Wordpress
+    type: mysql
+    access: proxy
+    folder: ''
+    url: 192.168.102.11:3306
+    database: wordpress
+    user: wordpress
+    secureJsonData:
+      password: wordpress
+    isDefault: false
+    editable: true

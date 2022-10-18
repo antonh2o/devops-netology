@@ -1,0 +1,21 @@
+#MySQL Settings
+mysql_root_password: "wordpress"
+mysql_db: "wordpress"
+mysql_bind_address: "0.0.0.0"
+backupdir: "/tmp"
+mysql_user:
+  name: wordpress
+  password: wordpress
+
+mysql_replication_user:
+  name: replication
+  password: wordpress
+
+mysql_replication_primary: "db01.{{ localdomain }}"
+mysql_replication_replica: "db02.{{ localdomain }}"
+mysql_replication_role_primary: false
+mysql_replication_role_replica: false
+
+lof_file: "default"
+lof_pos: "default"
+

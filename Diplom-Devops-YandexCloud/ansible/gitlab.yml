@@ -1,0 +1,9 @@
+---
+  - name: Installation gitlab
+    hosts: gitlab
+    become: yes
+    become_user: root
+    remote_user: ubuntu
+    roles:
+      - gitlab
+      - provision
