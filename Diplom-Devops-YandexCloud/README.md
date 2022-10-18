@@ -292,6 +292,7 @@ deploy-job:
 ![cicd_deploy](img/cicd_deploy.png "Автоматическое развертывание")
 
 проверяем на сайте, появился ли файл update.txt
+
 ![wp_test_update](img/wp_test_update.png "Автоматическое развертывание")
 
 
@@ -328,17 +329,18 @@ deploy-job:
 ![alert_db2_down](img/alert_db2_down.png "Alert DB02 ")
 
 6. В Grafana есть дашборд отображающий метрики из Node Exporter по всем серверам.
-7. В Grafana есть дашборд отображающий метрики из MySQL (*).
-8. В Grafana есть дашборд отображающий метрики из WordPress (*).
 
-Графана Дашборды
+Графана Дашборд Node Exporter Full:
+
 ![node_exporter](img/node_exporter.png "Dashboard Node Exporter Full")
 
+7. В Grafana есть дашборд отображающий метрики из MySQL (*).
 ![mysql_overview](img/mysql_overview.png "Dashboard Mysql Overview")
 
 ![mysql_replication](img/mysql_replication.png "Dashboard Mysql Replication")
 
-![replica_12](img/replica_12.png "Dashboard Mysql Replication на Slave узле")
+
+8. В Grafana есть дашборд отображающий метрики из WordPress (*).
 
 ![dashboard_wp-stat](img/dashboard_wp-stat.png "Dashboard WP-Statistics")
 
