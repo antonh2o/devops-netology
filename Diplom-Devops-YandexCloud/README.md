@@ -89,7 +89,7 @@ terraform workspace new stage
 ![yc_dns](img/yc_dns.png "Записи DNS после создания с помощью Terraform")
 
 Создание сети с помощью Terraform network.tf:
-![yc_dns](img/yc_dns.png "Записи DNS после создания с помощью Terraform")
+![yc_dns](img/yc_network.png "Сеть")
 
 
 
