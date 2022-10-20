@@ -383,4 +383,24 @@ https://alertmanager.you.domain (Alert Manager)
 Для выпуска сертификатов использовали STAGE сервера Letsencrypt
 ![cert_www](img/cert_www.png "STAGE SSL Letsencrypt")
 
+Для продакшен для выпуска сертификатов Letsencrypt нужно в роли proxy_server убрать параметры --test-cert
+Продашен сертификаты:
+
+wordpress
+![cert_www_prod](img/prod/cert_www_prod.png "cert_www_prod SSL Letsencrypt")
+
+Grafana
+![lets_grafana](img/prod/lets_grafana.png "lets_grafana SSL Letsencrypt")
+![cert_grafana_prod](img/prod/cert_grafana_prod.png "cert_grafana_prod SSL Letsencrypt")
+
+Alertmanager
+
+![lets_alertmanager](img/prod/lets_alertmanager.png "lets_alertmanager SSL Letsencrypt")
+
+Prometheus
+![lets_prom](img/prod/lets_prom.png "lets_prom SSL Letsencrypt")
+
+
+
+
 
