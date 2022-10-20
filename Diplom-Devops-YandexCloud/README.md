@@ -89,7 +89,7 @@ terraform workspace new stage
 ![yc_dns](img/yc_dns.png "Записи DNS после создания с помощью Terraform")
 
 Создание сети с помощью Terraform network.tf:
-![yc_dns](img/yc_dns.png "Записи DNS после создания с помощью Terraform")
+![yc_dns](img/yc_network.png "Сеть")
 
 
 
@@ -145,6 +145,68 @@ Ansible роль mysql-cluster:
 проверка репликации:
 ```
 mysql> SHOW REPLICA STATUS\G;
+*************************** 1. row ***************************
+             Replica_IO_State: Waiting for source to send event
+                  Source_Host: db01.ru-central1.internal
+                  Source_User: replication
+                  Source_Port: 3306
+                Connect_Retry: 60
+              Source_Log_File: binlog.000004
+          Read_Source_Log_Pos: 547666
+               Relay_Log_File: db02-relay-bin.000002
+                Relay_Log_Pos: 545466
+        Relay_Source_Log_File: binlog.000004
+           Replica_IO_Running: Yes
+          Replica_SQL_Running: Yes
+              Replicate_Do_DB: 
+          Replicate_Ignore_DB: 
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: 0
+                   Last_Error: 
+                 Skip_Counter: 0
+          Exec_Source_Log_Pos: 547666
+              Relay_Log_Space: 545675
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: 0
+           Source_SSL_Allowed: No
+           Source_SSL_CA_File: 
+           Source_SSL_CA_Path: 
+              Source_SSL_Cert: 
+            Source_SSL_Cipher: 
+               Source_SSL_Key: 
+        Seconds_Behind_Source: 0
+Source_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error: 
+               Last_SQL_Errno: 0
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Source_Server_Id: 1
+                  Source_UUID: 36ce16dc-4eff-11ed-ad7f-d00d12313c7e
+             Source_Info_File: mysql.slave_master_info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+    Replica_SQL_Running_State: Replica has read all relay log; waiting for more updates
+           Source_Retry_Count: 86400
+                  Source_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Source_SSL_Crl: 
+           Source_SSL_Crlpath: 
+           Retrieved_Gtid_Set: 
+            Executed_Gtid_Set: 
+                Auto_Position: 0
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Source_TLS_Version: 
+       Source_public_key_path: 
+        Get_Source_public_key: 0
+            Network_Namespace: 
+1 row in set (0.00 sec)
 
 
 
@@ -230,6 +292,7 @@ deploy-job:
 ![cicd_deploy](img/cicd_deploy.png "Автоматическое развертывание")
 
 проверяем на сайте, появился ли файл update.txt
+
 ![wp_test_update](img/wp_test_update.png "Автоматическое развертывание")
 
 
@@ -266,17 +329,18 @@ deploy-job:
 ![alert_db2_down](img/alert_db2_down.png "Alert DB02 ")
 
 6. В Grafana есть дашборд отображающий метрики из Node Exporter по всем серверам.
-7. В Grafana есть дашборд отображающий метрики из MySQL (*).
-8. В Grafana есть дашборд отображающий метрики из WordPress (*).
 
-Графана Дашборды
+Графана Дашборд Node Exporter Full:
+
 ![node_exporter](img/node_exporter.png "Dashboard Node Exporter Full")
 
+7. В Grafana есть дашборд отображающий метрики из MySQL (*).
 ![mysql_overview](img/mysql_overview.png "Dashboard Mysql Overview")
 
 ![mysql_replication](img/mysql_replication.png "Dashboard Mysql Replication")
 
-![replica_12](img/replica_12.png "Dashboard Mysql Replication на Slave узле")
+
+8. В Grafana есть дашборд отображающий метрики из WordPress (*).
 
 ![dashboard_wp-stat](img/dashboard_wp-stat.png "Dashboard WP-Statistics")
 
