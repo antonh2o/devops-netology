@@ -1,0 +1,369 @@
+terraform plan
+data.yandex_compute_image.nat-image: Reading...
+data.yandex_compute_image.image-type: Reading...
+data.yandex_compute_image.image-type: Read complete after 1s [id=fd8kdq6d0p8sij7h5qe3]
+data.yandex_compute_image.nat-image: Read complete after 1s [id=fd8tim6r7u5dqa0q5pq5]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_instance.vmcount[0] will be created
+  + resource "yandex_compute_instance" "vmcount" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "user-data" = <<-EOT
+                #cloud-config
+                users:
+                  - name: ubuntu
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                    ssh-authorized-keys:
+                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr1sKGQTNZMeRnkfYWKNmHjsCgQ2+Jb7ZrxAbJj0JsfqIOVUgu2gBGT1x3W4AuEx7TkoLAcVLzAR0qVFsbxn8VXD4U/rmqSKgGdwzgvrzwKqhJYvxV+VpZx2rvBuy43Obcm+yVSpkGcGvahkmyG+NRSLp3tTJR78bHYvwlhQyULM6qRp8WDJx/U4Qxl1qRZ+J/rv2iQawkXyTvqOGIhedglL5dD153K+vy7R1dVBId86V80Tc4ByTwXozOj+c7E0UKtF76quIYXcGGPGmEpatLV8t/BbK3nkNUPe3jSrvf850ujMXjGhogg30UN/ByrG5nz8wMmONsJrFl6S/mBemBGYIzRxBJOzkEonw/AI+NDdj+KY5R37M4uXz8DqDW0JrxiylBRgVJW1JfhDyMRyGDb+VtOMJa7Fi2KT5+eWfdvkAOLbZxUFM3UHy7CrXiU1vnWlGkPsowM2PsM2/QTAS7ExJanSyn+XmJaTfIAFerTKrzzXxQ3L6qxnLbY7e3cP0= root@vm-acd4db49
+
+                # ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
+            EOT
+        }
+      + name                      = "vm-count-0-prod"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v2"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8tim6r7u5dqa0q5pq5"
+              + name        = (known after apply)
+              + size        = 10
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 5
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy {
+          + preemptible = true
+        }
+    }
+
+  # yandex_compute_instance.vmcount[1] will be created
+  + resource "yandex_compute_instance" "vmcount" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "user-data" = <<-EOT
+                #cloud-config
+                users:
+                  - name: ubuntu
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                    ssh-authorized-keys:
+                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr1sKGQTNZMeRnkfYWKNmHjsCgQ2+Jb7ZrxAbJj0JsfqIOVUgu2gBGT1x3W4AuEx7TkoLAcVLzAR0qVFsbxn8VXD4U/rmqSKgGdwzgvrzwKqhJYvxV+VpZx2rvBuy43Obcm+yVSpkGcGvahkmyG+NRSLp3tTJR78bHYvwlhQyULM6qRp8WDJx/U4Qxl1qRZ+J/rv2iQawkXyTvqOGIhedglL5dD153K+vy7R1dVBId86V80Tc4ByTwXozOj+c7E0UKtF76quIYXcGGPGmEpatLV8t/BbK3nkNUPe3jSrvf850ujMXjGhogg30UN/ByrG5nz8wMmONsJrFl6S/mBemBGYIzRxBJOzkEonw/AI+NDdj+KY5R37M4uXz8DqDW0JrxiylBRgVJW1JfhDyMRyGDb+VtOMJa7Fi2KT5+eWfdvkAOLbZxUFM3UHy7CrXiU1vnWlGkPsowM2PsM2/QTAS7ExJanSyn+XmJaTfIAFerTKrzzXxQ3L6qxnLbY7e3cP0= root@vm-acd4db49
+
+                # ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
+            EOT
+        }
+      + name                      = "vm-count-1-prod"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v2"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8tim6r7u5dqa0q5pq5"
+              + name        = (known after apply)
+              + size        = 10
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 5
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy {
+          + preemptible = true
+        }
+    }
+
+  # yandex_compute_instance.vmforeach["1"] will be created
+  + resource "yandex_compute_instance" "vmforeach" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "user-data" = <<-EOT
+                #cloud-config
+                users:
+                  - name: ubuntu
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                    ssh-authorized-keys:
+                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr1sKGQTNZMeRnkfYWKNmHjsCgQ2+Jb7ZrxAbJj0JsfqIOVUgu2gBGT1x3W4AuEx7TkoLAcVLzAR0qVFsbxn8VXD4U/rmqSKgGdwzgvrzwKqhJYvxV+VpZx2rvBuy43Obcm+yVSpkGcGvahkmyG+NRSLp3tTJR78bHYvwlhQyULM6qRp8WDJx/U4Qxl1qRZ+J/rv2iQawkXyTvqOGIhedglL5dD153K+vy7R1dVBId86V80Tc4ByTwXozOj+c7E0UKtF76quIYXcGGPGmEpatLV8t/BbK3nkNUPe3jSrvf850ujMXjGhogg30UN/ByrG5nz8wMmONsJrFl6S/mBemBGYIzRxBJOzkEonw/AI+NDdj+KY5R37M4uXz8DqDW0JrxiylBRgVJW1JfhDyMRyGDb+VtOMJa7Fi2KT5+eWfdvkAOLbZxUFM3UHy7CrXiU1vnWlGkPsowM2PsM2/QTAS7ExJanSyn+XmJaTfIAFerTKrzzXxQ3L6qxnLbY7e3cP0= root@vm-acd4db49
+
+                # ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
+            EOT
+        }
+      + name                      = "vm-4reach-1-prod"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v2"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8tim6r7u5dqa0q5pq5"
+              + name        = (known after apply)
+              + size        = 10
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 5
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy {
+          + preemptible = true
+        }
+    }
+
+  # yandex_compute_instance.vmforeach["2"] will be created
+  + resource "yandex_compute_instance" "vmforeach" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "user-data" = <<-EOT
+                #cloud-config
+                users:
+                  - name: ubuntu
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                    ssh-authorized-keys:
+                      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCr1sKGQTNZMeRnkfYWKNmHjsCgQ2+Jb7ZrxAbJj0JsfqIOVUgu2gBGT1x3W4AuEx7TkoLAcVLzAR0qVFsbxn8VXD4U/rmqSKgGdwzgvrzwKqhJYvxV+VpZx2rvBuy43Obcm+yVSpkGcGvahkmyG+NRSLp3tTJR78bHYvwlhQyULM6qRp8WDJx/U4Qxl1qRZ+J/rv2iQawkXyTvqOGIhedglL5dD153K+vy7R1dVBId86V80Tc4ByTwXozOj+c7E0UKtF76quIYXcGGPGmEpatLV8t/BbK3nkNUPe3jSrvf850ujMXjGhogg30UN/ByrG5nz8wMmONsJrFl6S/mBemBGYIzRxBJOzkEonw/AI+NDdj+KY5R37M4uXz8DqDW0JrxiylBRgVJW1JfhDyMRyGDb+VtOMJa7Fi2KT5+eWfdvkAOLbZxUFM3UHy7CrXiU1vnWlGkPsowM2PsM2/QTAS7ExJanSyn+XmJaTfIAFerTKrzzXxQ3L6qxnLbY7e3cP0= root@vm-acd4db49
+
+                # ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
+            EOT
+        }
+      + name                      = "vm-4reach-2-prod"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v2"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8tim6r7u5dqa0q5pq5"
+              + name        = (known after apply)
+              + size        = 10
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 5
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy {
+          + preemptible = true
+        }
+    }
+
+  # yandex_vpc_network.default will be created
+  + resource "yandex_vpc_network" "default" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = (known after apply)
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "stage"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_route_table.route-table will be created
+  + resource "yandex_vpc_route_table" "route-table" {
+      + created_at = (known after apply)
+      + folder_id  = (known after apply)
+      + id         = (known after apply)
+      + labels     = (known after apply)
+      + name       = "route-table"
+      + network_id = (known after apply)
+    }
+
+  # yandex_vpc_subnet.default will be created
+  + resource "yandex_vpc_subnet" "default" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "subnet"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.101.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+  # yandex_vpc_subnet.default-nat will be created
+  + resource "yandex_vpc_subnet" "default-nat" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "subnet-nat"
+      + network_id     = (known after apply)
+      + route_table_id = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.102.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+Plan: 8 to add, 0 to change, 0 to destroy.
+
