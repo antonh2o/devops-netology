@@ -22,20 +22,24 @@
     * С каким другим параметром конфликтует `name`? Приложите строчку кода, в которой это указано.
 ```
 Ответ:
+```
 
 [ConflictsWith: []string{"name_prefix"}](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L87)
 
-```
+
 
     * Какая максимальная длина имени?
 ```
 Ответ:
 
-[80 символов](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L427)
-
 ```
 
+[80 символов](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L427)
+
+
     * Какому регулярному выражению должно подчиняться имя?
+```
+регулярка там же
 ```
 [регулярка там же](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L424)
 bash
@@ -44,7 +48,7 @@ bash
   } else {
    re = regexp.MustCompile(`^[a-zA-Z0-9_-]{1,80}$`)
   }
-```
+
 
 
 #### Задача 2. (Не обязательно)
