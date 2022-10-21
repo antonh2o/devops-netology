@@ -99,7 +99,7 @@ terraform workspace list
 Вывод команды `terraform plan` сохранил в файле terraform_plan_prod.txt
 
 ```
-[terraform_plan_prod.log](terraform_plan_prod.log)
+[img/terraform_plan_prod.log](img/terraform_plan_prod.log)
 
 ---
 
