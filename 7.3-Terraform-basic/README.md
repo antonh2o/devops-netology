@@ -99,7 +99,7 @@ terraform workspace list
 Вывод команды `terraform plan` сохранил в файле terraform_plan_prod.txt
 
 ```
-[terraform_plan_prod.log](terraform_plan_prod.log)
+![terraform_plan_prod.log](https://github.com/antonh2o/devops-netology/blob/main/7.3-Terraform-basic/tf_plan_prod.txt)
 
 ---
 
