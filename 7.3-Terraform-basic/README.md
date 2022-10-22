@@ -96,10 +96,11 @@ terraform workspace list
 * Вывод команды `terraform plan` для воркспейса `prod`.  
 
 ```
-Вывод команды `terraform plan` сохранил в файле terraform_plan_prod.txt
+Вывод команды `terraform plan` сохранил в файле 
+terraform_plan_prod.txt
 
 ```
-[terraform_plan_prod.txt](terraform_plan_prod.txt)
+[terraform_plan_prod.txt](https://github.com/antonh2o/devops-netology/blob/main/7.3-Terraform-basic/tf_plan_prod.txt "Ссылка на файл terraform_plan_prod.txt")
 
 ---
 
