@@ -31,12 +31,28 @@
 10. Выложите playbook в репозиторий.
 [roles](roles)
 11. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
+```
+Ответ:
+Подготовил репозиторий - (текущий)
+С помошью terraform разворачиваются три ноды и с помощью ansible playbook site.yml  
+с помощью ролей разворачиваются 
+clickhouse, lighthouse, vector:
 
+clickhouse-role:
+```
 [clickhouse-role](https://github.com/antonh2o/clickhouse-role)
+```
+lighthouse-role:
+```
 [lighthouse-role](https://github.com/antonh2o/lighthouse-role)
+
+```
+vector-role:
+```
 [vector-role](https://github.com/antonh2o/vector-role)
 
-в текущем репозитории  playbook
+в текущем репозитории  playbook:
+[roles](roles)
 ```
 Вывод:
 
