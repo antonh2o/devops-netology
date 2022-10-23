@@ -1,0 +1,16 @@
+---
+clickhouse_ip: 185.41.163.204
+clickhouse:
+  hosts:
+    clickhouse01:
+      ansible_host: {{ clickhouse_ip }}
+
+vector:
+  hosts:
+    vector01:
+      ansible_host: {{ clickhouse_ip }}
+
+lighthouse:
+  hosts:
+    lighthouse01:
+      ansible_host: {{ clickhouse_ip }}

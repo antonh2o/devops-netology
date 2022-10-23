@@ -1,0 +1,13 @@
+---
+  - name: clickhouse-role
+    src: git@github.com:antonh2o/clickhouse-role.git
+    scm: git
+    version: "0.1.0"
+  - name: vector-role
+    src: git@github.com:antonh2o/vector-role.git
+    scm: git
+    version: "0.1.0"
+  - name: lighthouse-role
+    src: git@github.com:antonh2o/lighthouse-role.git
+    scm: git
+    version: "0.1.0"
