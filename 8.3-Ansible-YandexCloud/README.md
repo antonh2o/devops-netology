@@ -1,42 +1,115 @@
-# Домашнее задание к занятию "8.4 Работа с Roles"
+# Домашнее задание к занятию "08.03 Использование Yandex Cloud"                                                                     
+                                                                                                                                    
+## Подготовка к выполнению                                                                                                          
+                                                                                                                                    
+1. Подготовьте в Yandex Cloud три хоста: для `clickhouse`, для `vector` и для `lighthouse`.                                         
+ 
+```
+Ответ:
+с помощью terraform разворациваются 3 узла
+```
+[terraform](terraform)
 
-## Подготовка к выполнению
-1. (Необязательно) Познакомтесь с [lighthouse](https://youtu.be/ymlrNlaHzIY?t=929)
-2. Создайте два пустых публичных репозитория в любом своём проекте: vector-role и lighthouse-role.
-3. Добавьте публичную часть своего ключа к своему профилю в github.
+Ссылка на репозиторий LightHouse: https://github.com/VKCOM/lighthouse                                                               
+                                                                                                                                    
+## Основная часть                                                                                                                   
+                                                                                                                                    
+1. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает lighthouse.                                  
+2. При создании tasks рекомендую использовать модули: `get_url`, `template`, `yum`, `apt`.                                          
+3. Tasks должны: скачать статику lighthouse, установить nginx или любой другой webserver, настроить его конфиг для открытия lighthou
+```
+lighthouse разворачивается с помощью роли lighthouse-role
+```
+4. Приготовьте свой собственный inventory файл `prod.yml`.
+```
+prod.yml создается с помощью терраформ в файле inventory.tf
+```                                                                          
+5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.                                                             
+```
+ошибки были исправлены в прошлом задании 8.2
+```
+6. Попробуйте запустить playbook на этом окружении с флагом `--check`.                                                              
 
-## Основная часть
+```
+check не очень помогает, так как при чеке скачивание не происходит и папки не создаются
+```
+7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.                   
+8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.  
+```
+--diff показал что плейбук идемпотентен
+```
+                                         
+9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги
+```
+Роль для установки clickhouse.                                                                                                      
+- Установка:                                                                                                                        
+  - clickhouse-client                                                                                                               
+  - clickhouse-server                                                                                                               
+  - clickhouse-common-static                                                                                                        
+- Создаётся БД                                                                                                                      
+- Создаётся таблица для логов                                                                                                       
+- Создаётся пользователь для записи в БД                                                                                            
+- Конфигурируется clickhouse-server для работы внешних подключений  
 
-Наша основная цель - разбить наш playbook на отдельные roles. Задача: сделать roles для clickhouse, vector и lighthouse и написать playbook для использования этих ролей. Ожидаемый результат: существуют три ваших репозитория: два с roles и один с playbook.
+------------ 
+Роль для установки lighthouse.                                                                                                      
+- Устновка Git                                                                                                                      
+- Скачивание lighthouse из репозитория                                                                                              
+- Конфигурирование lighthouse                                                                                                       
+                                                                                                                                    
+Requirements                                                                                                                        
+------------                                                                                                                        
+                                                                                                                                    
+- Должен быть установлен git. Если его нет, роль произведёт его установку                                                           
+- Требуется отдельная установка и настройка Nginx   
 
-1. Создать в старой версии playbook файл `requirements.yml` и заполнить его следующим содержимым:
+Роль для установки vector.                                                                                                          
+- Установка vector                                                                                                                  
+- Создание systemd unit Vector                                                                                                      
+- Конфигурирование vector на передачу данных в clickhouse                                                                           
+                                                                                
+--------------                                                                                                                      
+Переменные для установки кредов                                                                                                     
+defaults/main.yml:                                                                                                                  
+```yaml                                                                                                                             
+clickhouse_user: netology                                                                                                           
+clickhouse_password: netology                                                                                                       
+```                                                                                                                                 
+                                                                                                                                    
+Конфигурация для сбора и передачи логов содержится в vars/main.yml                                                                  
+                                                                                                                                    
+Dependencies                                                                                                                        
+------------                                                                                                                        
+                                                                                                                                    
+В `inventory` должен быть хост `clickhouse01`                                                                                       
+```yaml                                                                                                                             
+endpoint: http://{{ clickhouse01_ip }}:8123                                                                                         
+```                                        
 
-   ```yaml
-   ---
-     - src: git@github.com:AlexeySetevoi/ansible-clickhouse.git
-       scm: git
-       version: "1.11.0"
-       name: clickhouse 
-   ```
+10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте с
 
-2. При помощи `ansible-galaxy` скачать себе эту роль.
-3. Создать новый каталог с ролью при помощи `ansible-galaxy role init vector-role`.
-4. На основе tasks из старого playbook заполните новую role. Разнесите переменные между `vars` и `default`. 
-5. Перенести нужные шаблоны конфигов в `templates`.
-6. Описать в `README.md` обе роли и их параметры.
-7. Повторите шаги 3-6 для lighthouse. Помните, что одна роль должна настраивать один продукт.
-8. Выложите все roles в репозитории. Проставьте тэги, используя семантическую нумерацию Добавьте roles в `requirements.yml` в playbook.
+```
+Ответ:
+Подготовил репозиторий - (текущий)
+С помошью terraform разворачиваются три ноды и с помощью ansible playbook site.yml  
+с помощью ролей разворачиваются 
+clickhouse, lighthouse, vector:
 
-9. Переработайте playbook на использование roles. Не забудьте про зависимости lighthouse и возможности совмещения `roles` с `tasks`.
-10. Выложите playbook в репозиторий.
-[roles](roles)
-11. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
-
+clickhouse-role:
+```
 [clickhouse-role](https://github.com/antonh2o/clickhouse-role)
+```
+lighthouse-role:
+```
 [lighthouse-role](https://github.com/antonh2o/lighthouse-role)
+
+```
+vector-role:
+```
 [vector-role](https://github.com/antonh2o/vector-role)
 
-в текущем репозитории  playbook
+в текущем репозитории  playbook:
+[roles](roles)
 ```
 Вывод:
 
@@ -50,10 +123,11 @@ null_resource.cluster: Creation complete after 3m33s [id=2015107478909900520]
 Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
 
 ```
----
 
-### Как оформить ДЗ?
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
+---                                                                                                                                 
+                                                                                                                                    
+### Как оформить ДЗ?                                                                                                                
+                                                                                                                                    
+Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.                                                      
+                                                                                                                                    
+---                                                                                                                                 
